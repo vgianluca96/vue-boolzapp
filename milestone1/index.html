@@ -115,6 +115,14 @@
 
             <div class="chat-content">
 
+                <div class="py-4" v-if="chatToShow != null">
+                    <div class="d-flex align-content-center col-12 py-2 px-5" v-for="message in contacts[chatToShow].messages" :class="{'message-sent': message.status == 'sent', 'message-received': message.status == 'received' }">
+                        <div class="col-5 rounded p-3">
+                            {{message.message}}
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="message-content">

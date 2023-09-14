@@ -7,6 +7,7 @@
 
 :root {
     --green1: rgb(0, 150, 136);
+    --green2: rgb(213,249,186);
     --grey1: rgb(219, 219, 211);
     --grey2: rgb(234, 234, 234);
     --blue1: rgb(142, 218, 252);
@@ -73,4 +74,16 @@ body {
 .message-content {
     height: 70px;
     background-color: var(--grey2);
+}
+
+.message-sent {
+    justify-content: flex-end;
+}
+
+.message-sent div {
+    background-color: var(--green2);
+}
+
+.message-received div {
+    background-color: var(--white);
 }
