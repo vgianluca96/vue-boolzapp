@@ -5,6 +5,7 @@ const {createApp} = Vue
 createApp ({
     data() {
         return {
+            dateOptions: { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' },
             chatToShow: null,
             contacts: [
                 {
@@ -189,3 +190,14 @@ createApp ({
 }).mount('#app');
 
 
+/*
+RICORDA: METTERE OVERFLOW ANCHE ALLA PARTE DOVE CI SONO I MESSAGGI
+ */
+
+/* 
+// function parseDate() {
+    a = new Date('10/01/2020 15:30:55');
+    dateOptions: { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    a.toLocaleDateString('it-IT',dateOptions);
+}
+*/
