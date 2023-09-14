@@ -70,7 +70,7 @@
 
             </div>
 
-            <div class="search-card d-flex align-items-center justify-content-center">
+            <div class="search-card d-flex align-items-center justify-content-center bg-light">
 
                 <div class="col-12 px-1">
                     <div class="input-group">
@@ -159,7 +159,23 @@
 
             </div>
 
-            <div class="message-content">
+            <div class="message-content d-flex justify-content-center align-items-center">
+
+                <div class="col-12 d-flex align-items-center px-3" v-if="chatToShow != null">
+                    <div class="col-1 text-center">
+                        <a href="" class="link-secondary">
+                            <i class="fa-regular fa-face-smile"></i>
+                        </a>
+                    </div>
+                    <div class="col-10">
+                        <input type="text" class="form-control" placeholder="Scrivi un messaggio">
+                    </div>
+                    <div class="col-1 text-center">
+                        <a href="" class="link-secondary">
+                            <i class="fa-solid fa-microphone"></i>
+                        </a>
+                    </div>
+                </div>
 
             </div>
 
