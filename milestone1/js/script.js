@@ -176,7 +176,10 @@ createApp ({
             if (this.chatToShow == null) {
                 this.contacts[i].visible = true;
                 this.chatToShow = i;    
-            } else {
+            } else if (this.chatToShow == i) {
+                this.contacts[this.chatToShow].visible = false;
+                this.chatToShow = null;
+            }else {
                 this.contacts[this.chatToShow].visible = false;
                 this.contacts[i].visible = true;
                 this.chatToShow = i;
