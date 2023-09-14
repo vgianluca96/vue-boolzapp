@@ -94,11 +94,11 @@
                             {{contact.name}}
                         </div>
                         <div class="text-secondary">
-                            Ultimo messaggio inviato
+                            {{contact.messages[contact.messages.length-1].message}}
                         </div>
                     </div>
-                    <div class="col-2 text-end fs-6 text-secondary">
-                        12:00
+                    <div class="col-2 text-end text-small text-secondary">
+                        {{contact.messages[contact.messages.length-1].date}}
                     </div>
                 </div>
                 
@@ -148,8 +148,11 @@
 
                 <div class="py-4" v-if="chatToShow != null">
                     <div class="d-flex align-content-center col-12 py-2 px-5" v-for="message in contacts[chatToShow].messages" :class="{'message-sent': message.status == 'sent', 'message-received': message.status == 'received' }">
-                        <div class="col-5 rounded p-3">
+                        <div class="col-5 rounded py-2 px-3">
                             {{message.message}}
+                            <div class="text-end pt-1 text-small text-secondary">
+                                {{message.date}}
+                            </div>
                         </div>
                     </div>
                 </div>

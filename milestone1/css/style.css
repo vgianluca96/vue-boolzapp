@@ -87,3 +87,7 @@ body {
 .message-received div {
     background-color: var(--white);
 }
+
+.text-small {
+    font-size: 9px;
+}
