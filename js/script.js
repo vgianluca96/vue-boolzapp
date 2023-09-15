@@ -260,10 +260,9 @@ createApp ({
         chatFilter() {
             
             this.contacts =  this.originalContacts;
-            this.contacts = this.contacts.filter(contact => contact.name.includes(this.searchField));
+            
+            this.contacts = this.contacts.filter((contact) => contact.name.toLowerCase().includes(this.searchField.toLowerCase()));
 
-            console.log(this.contacts)
-            console.log(this.originalContacts)
         }
     }
 }).mount('#app');
