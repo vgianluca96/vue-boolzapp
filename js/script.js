@@ -174,6 +174,9 @@ createApp ({
             ]
         }
     },
+    mounted() {
+        this.initialDateParsing();
+    },
     methods: {
         showChat(i) {
             if (this.chatToShow == null) {
@@ -210,7 +213,40 @@ createApp ({
         parseDate(date) {
             date = date.toLocaleDateString('it-IT', this.dateOptions);
             return date;
+        },
+        initialDateParsing() {
+            for (let i = 0; i < this.contacts.length; i++) {
+                for (let j = 0; j < this.contacts[i].messages.length; j++) {
+                    let date = this.contacts[i].messages[j].date;
+                    console.log(date);
+                    date = date.split("");
+                    //console.log(date)
+                    let day = [date[0], date[1]];
+                    let month = [date[3], date[4]];
+                    //console.log(day);
+                    //console.log(month);
+                    date[3] = day[0];
+                    date[4] = day[1];
+                    date[0] = month[0];
+                    date[1] = month[1];
+                    date = date.join("");
+                    console.log(date);
+                    console.log('#############')
+                }
+            }
+        },
+        
+         /*
+        initialDateParsingc(item) {
+            console.log(item.message)
+
+            
+            item.date = new Date(item.date);
+            console.log(item.date)
+            item.date = this.parseDate(item.date);
+            
         }
+        */
     }
 }).mount('#app');
 
