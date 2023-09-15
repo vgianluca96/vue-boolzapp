@@ -10,6 +10,7 @@ createApp ({
             newMessageDate: null,
             chatToShow: null,
             searchField: '',
+            originalContacts: [],
             contacts: [
                 {
                     name: 'Michele',
@@ -178,6 +179,7 @@ createApp ({
     mounted() {
         this.dateFormat('hour-minute');
         this.initialDateParsing();
+        this.contactsCopy();
     },
     methods: {
         showChat(i) {
@@ -252,8 +254,16 @@ createApp ({
                }
            }
         },
+        contactsCopy(){
+            this.originalContacts = this.contacts;
+        },
         chatFilter() {
-            console.log(this.searchField);
+            
+            this.contacts =  this.originalContacts;
+            this.contacts = this.contacts.filter(contact => contact.name.includes(this.searchField));
+
+            console.log(this.contacts)
+            console.log(this.originalContacts)
         }
     }
 }).mount('#app');
