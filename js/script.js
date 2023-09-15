@@ -188,31 +188,27 @@ createApp ({
                 this.chatToShow = i;
             }
         },
-        sendMessage() {
+        sendOrReceiveMessage(type) {
             if (this.newMessage != '') {
-                this.dateNewMessage = this.parseDate(new Date());
-                this.contacts[this.chatToShow].messages.push({
-                    date: this.dateNewMessage,
-                    message: this.newMessage,
-                    status: 'sent'
-                });
-                this.newMessage = '';
-                this.dateNewMessage = null;
-                const myTimeout = setTimeout(this.sendMessage, 1000);
+                this.pushMessage(type);
+                setTimeout(this.sendOrReceiveMessage, 1000);
             } else {
                 this.newMessage = 'Ok';
-                this.dateNewMessage = this.parseDate(new Date());
-                this.contacts[this.chatToShow].messages.push({
-                    date: this.dateNewMessage,
-                    message: this.newMessage,
-                    status: 'received'
-                });
-                this.newMessage = '';
-                this.dateNewMessage = null;
+                this.pushMessage('received');
             }
         },
+        pushMessage(type) {
+            this.dateNewMessage = this.parseDate(new Date());
+            this.contacts[this.chatToShow].messages.push({
+                date: this.dateNewMessage,
+                message: this.newMessage,
+                status: type
+            });
+            this.newMessage = '';
+            this.dateNewMessage = null;
+        },
         parseDate(date) {
-            date = date.toLocaleDateString('it-IT',this.dateOptions);
+            date = date.toLocaleDateString('it-IT', this.dateOptions);
             return date;
         }
     }
