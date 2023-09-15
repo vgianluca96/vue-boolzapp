@@ -6,6 +6,8 @@ createApp ({
     data() {
         return {
             dateOptions: { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' },
+            newMessage:'',
+            dateNeMessage: null,
             chatToShow: null,
             contacts: [
                 {
@@ -185,16 +187,38 @@ createApp ({
                 this.contacts[i].visible = true;
                 this.chatToShow = i;
             }
+        },
+        sendMessage() {
+            if (this.newMessage != '') {
+                this.dateNewMessage = this.parseDate(new Date());
+                console.log(this.dateNewMessage);
+                console.log(this.chatToShow);
+                this.contacts[this.chatToShow].messages.push({
+                    date: this.dateNewMessage,
+                    message: this.newMessage,
+                    status: 'sent'
+                });
+                this.newMessage = '';
+                this.dateNewMessage = null;
+            }
+        },
+        parseDate(d) {
+            d = d.toLocaleDateString('it-IT',this.dateOptions);
+            return d;
+            //console.log(d);
         }
     }
 }).mount('#app');
 
 
 
-/* 
-// function parseDate() {
-    a = new Date('10/01/2020 15:30:55');
-    dateOptions: { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-    a.toLocaleDateString('it-IT',dateOptions);
-}
+/*
+// parsing della data dei mex 
+
+a = new Date('10/01/2020 15:30:55');
+dateOptions: { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+a.toLocaleDateString('it-IT',dateOptions);
+
+dateOptions: { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }
+
 */
