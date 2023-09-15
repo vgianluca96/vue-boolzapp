@@ -215,50 +215,21 @@ createApp ({
             return date;
         },
         initialDateParsing() {
-            for (let i = 0; i < this.contacts.length; i++) {
-                for (let j = 0; j < this.contacts[i].messages.length; j++) {
-                    let date = this.contacts[i].messages[j].date;
-                    console.log(date);
-                    date = date.split("");
-                    //console.log(date)
-                    let day = [date[0], date[1]];
-                    let month = [date[3], date[4]];
-                    //console.log(day);
-                    //console.log(month);
-                    date[3] = day[0];
-                    date[4] = day[1];
-                    date[0] = month[0];
-                    date[1] = month[1];
-                    date = date.join("");
-                    console.log(date);
-                    console.log('#############')
-                }
-            }
+           for (let i = 0; i < this.contacts.length; i++) {
+               for (let j = 0; j < this.contacts[i].messages.length; j++) {
+                   let date = this.contacts[i].messages[j].date;
+                   date = date.split("");
+                   let day = [date[0], date[1]];
+                   let month = [date[3], date[4]];
+                   date[3] = day[0];
+                   date[4] = day[1];
+                   date[0] = month[0];
+                   date[1] = month[1];
+                   date = date.join("");
+                   date = this.parseDate(new Date(date))
+                   this.contacts[i].messages[j].date = date;
+               }
+           }
         },
-        
-         /*
-        initialDateParsingc(item) {
-            console.log(item.message)
-
-            
-            item.date = new Date(item.date);
-            console.log(item.date)
-            item.date = this.parseDate(item.date);
-            
-        }
-        */
     }
 }).mount('#app');
-
-
-
-/*
-// parsing della data dei mex 
-
-a = new Date('10/01/2020 15:30:55');
-dateOptions: { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-a.toLocaleDateString('it-IT',dateOptions);
-
-dateOptions: { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }
-
-*/
