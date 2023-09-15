@@ -5,17 +5,7 @@ const {createApp} = Vue
 createApp ({
     data() {
         return {
-            dateOptions: {
-                year: 'numeric',
-                month: 'numeric',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric'
-            },
-            dateOptions2: {
-                hour: 'numeric',
-                minute: 'numeric'
-            },
+            dateOptions: {},
             newMessage:'',
             dateNewMessage: null,
             chatToShow: null,
@@ -185,6 +175,7 @@ createApp ({
         }
     },
     mounted() {
+        this.dateFormat('hour-minute');
         this.initialDateParsing();
     },
     methods: {
@@ -211,7 +202,7 @@ createApp ({
             }
         },
         pushMessage(type) {
-            this.dateNewMessage = this.parseDate(new Date(),this.dateOptions2);
+            this.dateNewMessage = this.parseDate(new Date(),this.dateOptions);
             this.contacts[this.chatToShow].messages.push({
                 date: this.dateNewMessage,
                 message: this.newMessage,
@@ -223,6 +214,26 @@ createApp ({
         parseDate(date,options) {
             date = date.toLocaleTimeString('it-IT', options);
             return date;
+        },
+        dateFormat(type) {
+            switch (type) {
+                case 'full':
+                    this.dateOptions = {
+                        year: 'numeric',
+                        month: 'numeric',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric'
+                    }
+                    break;
+                case 'hour-minute':
+                    this.dateOptions = {
+                        hour: 'numeric',
+                        minute: 'numeric'
+                    }
+                    break;
+            }
+
         },
         initialDateParsing() {
            for (let i = 0; i < this.contacts.length; i++) {
@@ -236,7 +247,7 @@ createApp ({
                    date[0] = month[0];
                    date[1] = month[1];
                    date = date.join("");
-                   date = this.parseDate(new Date(date),this.dateOptions2);
+                   date = this.parseDate(new Date(date),this.dateOptions);
                    this.contacts[i].messages[j].date = date;
                }
            }
