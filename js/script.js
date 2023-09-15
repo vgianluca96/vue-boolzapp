@@ -7,7 +7,7 @@ createApp ({
         return {
             dateOptions: { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' },
             newMessage:'',
-            dateNeMessage: null,
+            dateNewMessage: null,
             chatToShow: null,
             contacts: [
                 {
