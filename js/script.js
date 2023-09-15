@@ -198,10 +198,13 @@ createApp ({
         sendOrReceiveMessage(type) {
             if (this.newMessage != '') {
                 this.pushMessage(type);
-                setTimeout(this.sendOrReceiveMessage, 1000);
+                const timeout = setTimeout(this.sendOrReceiveMessage, 5000);
+                console.log(this.newMessage)
+                console.log(timeout)
             } else {
                 this.newMessage = 'Ok';
                 this.pushMessage('received');
+                console.log(this.newMessage)
             }
         },
         pushMessage(type) {
@@ -258,7 +261,11 @@ createApp ({
             this.originalContacts = this.contacts;
         },
         chatFilter() {
-            
+            if (this.chatToShow!=null) {
+                this.contacts[this.chatToShow].visible = false;
+                this.chatToShow= null;
+            }
+
             this.contacts =  this.originalContacts;
             
             this.contacts = this.contacts.filter((contact) => contact.name.toLowerCase().includes(this.searchField.toLowerCase()));
@@ -266,3 +273,10 @@ createApp ({
         }
     }
 }).mount('#app');
+
+/*
+BUG
+- se applico il filtro con una chat aperta c'è un errore (RISOLTO)
+- se scrivo un pessaggio prima che compaia la risposta ok, questo viene stampato su sfondo trasparente
+
+*/
