@@ -5,7 +5,17 @@ const {createApp} = Vue
 createApp ({
     data() {
         return {
-            dateOptions: { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' },
+            dateOptions: {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric'
+            },
+            dateOptions2: {
+                hour: 'numeric',
+                minute: 'numeric'
+            },
             newMessage:'',
             dateNewMessage: null,
             chatToShow: null,
@@ -201,7 +211,7 @@ createApp ({
             }
         },
         pushMessage(type) {
-            this.dateNewMessage = this.parseDate(new Date());
+            this.dateNewMessage = this.parseDate(new Date(),this.dateOptions2);
             this.contacts[this.chatToShow].messages.push({
                 date: this.dateNewMessage,
                 message: this.newMessage,
@@ -210,8 +220,8 @@ createApp ({
             this.newMessage = '';
             this.dateNewMessage = null;
         },
-        parseDate(date) {
-            date = date.toLocaleDateString('it-IT', this.dateOptions);
+        parseDate(date,options) {
+            date = date.toLocaleTimeString('it-IT', options);
             return date;
         },
         initialDateParsing() {
@@ -226,7 +236,7 @@ createApp ({
                    date[0] = month[0];
                    date[1] = month[1];
                    date = date.join("");
-                   date = this.parseDate(new Date(date))
+                   date = this.parseDate(new Date(date),this.dateOptions2);
                    this.contacts[i].messages[j].date = date;
                }
            }
