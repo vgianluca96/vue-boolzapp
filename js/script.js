@@ -7,8 +7,9 @@ createApp ({
         return {
             dateOptions: {},
             newMessage:'',
-            NewMessageDate: null,
+            newMessageDate: null,
             chatToShow: null,
+            searchField: '',
             contacts: [
                 {
                     name: 'Michele',
@@ -202,14 +203,14 @@ createApp ({
             }
         },
         pushMessage(type) {
-            this.NewMessageDate = this.dateParsing(new Date(),this.dateOptions);
+            this.newMessageDate = this.dateParsing(new Date(),this.dateOptions);
             this.contacts[this.chatToShow].messages.push({
-                date: this.NewMessageDate,
+                date: this.newMessageDate,
                 message: this.newMessage,
                 status: type
             });
             this.newMessage = '';
-            this.NewMessageDate = null;
+            this.newMessageDate = null;
         },
         dateParsing(date,options) {
             date = date.toLocaleTimeString('it-IT', options);
@@ -251,5 +252,8 @@ createApp ({
                }
            }
         },
+        chatFilter() {
+            console.log(this.searchField);
+        }
     }
 }).mount('#app');
