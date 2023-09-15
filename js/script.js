@@ -190,9 +190,6 @@ createApp ({
 }).mount('#app');
 
 
-/*
-RICORDA: METTERE OVERFLOW ANCHE ALLA PARTE DOVE CI SONO I MESSAGGI
- */
 
 /* 
 // function parseDate() {

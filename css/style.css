@@ -15,29 +15,16 @@
 }
 
 body {
-    position: relative;
     width: 100%;
     height: 100vh;
     min-width: 1200px;
     min-height: 600px;
-    background-color: var(--grey1);
-}
-
-.green-stripe{
-    width: 100%;
-    height: 15%;
-    background-color: var(--green1);
+    background-image: linear-gradient(var(--green1) 0, var(--green1) 15%, var(--grey1) 0, var(--grey1) 100%);
 }
 
 .app-container {
     width: 80%;
     height: 95%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto auto;
     background-color: var(--white);
 }
 
@@ -53,7 +40,6 @@ body {
 
 .search-card {
     height: 50px;
-    
 }
 
 .chat-list-card {
@@ -74,6 +60,14 @@ body {
 .message-content {
     height: 70px;
     background-color: var(--grey2);
+}
+
+.bell {
+    width: 50px;
+    aspect-ratio: 1 / 1;
+    margin-left: 10px;
+    background-color: var(--white);
+    color: var(--blue1);
 }
 
 .message-sent {
