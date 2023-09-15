@@ -277,6 +277,6 @@ createApp ({
 /*
 BUG
 - se applico il filtro con una chat aperta c'è un errore (RISOLTO)
-- se scrivo un pessaggio prima che compaia la risposta ok, questo viene stampato su sfondo trasparente
+- function sendOrReceiveMessage: se scrivo un messaggio senza premere 'invio' prima che parta la timeout function, questo viene stampato su sfondo trasparente
 
 */
