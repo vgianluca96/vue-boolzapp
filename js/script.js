@@ -191,8 +191,6 @@ createApp ({
         sendMessage() {
             if (this.newMessage != '') {
                 this.dateNewMessage = this.parseDate(new Date());
-                console.log(this.dateNewMessage);
-                console.log(this.chatToShow);
                 this.contacts[this.chatToShow].messages.push({
                     date: this.dateNewMessage,
                     message: this.newMessage,
@@ -200,12 +198,22 @@ createApp ({
                 });
                 this.newMessage = '';
                 this.dateNewMessage = null;
+                const myTimeout = setTimeout(this.sendMessage, 1000);
+            } else {
+                this.newMessage = 'Ok';
+                this.dateNewMessage = this.parseDate(new Date());
+                this.contacts[this.chatToShow].messages.push({
+                    date: this.dateNewMessage,
+                    message: this.newMessage,
+                    status: 'received'
+                });
+                this.newMessage = '';
+                this.dateNewMessage = null;
             }
         },
-        parseDate(d) {
-            d = d.toLocaleDateString('it-IT',this.dateOptions);
-            return d;
-            //console.log(d);
+        parseDate(date) {
+            date = date.toLocaleDateString('it-IT',this.dateOptions);
+            return date;
         }
     }
 }).mount('#app');
