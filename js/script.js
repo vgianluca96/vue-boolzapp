@@ -7,7 +7,7 @@ createApp ({
         return {
             dateOptions: {},
             newMessage:'',
-            dateNewMessage: null,
+            NewMessageDate: null,
             chatToShow: null,
             contacts: [
                 {
@@ -202,16 +202,16 @@ createApp ({
             }
         },
         pushMessage(type) {
-            this.dateNewMessage = this.parseDate(new Date(),this.dateOptions);
+            this.NewMessageDate = this.dateParsing(new Date(),this.dateOptions);
             this.contacts[this.chatToShow].messages.push({
-                date: this.dateNewMessage,
+                date: this.NewMessageDate,
                 message: this.newMessage,
                 status: type
             });
             this.newMessage = '';
-            this.dateNewMessage = null;
+            this.NewMessageDate = null;
         },
-        parseDate(date,options) {
+        dateParsing(date,options) {
             date = date.toLocaleTimeString('it-IT', options);
             return date;
         },
@@ -233,7 +233,6 @@ createApp ({
                     }
                     break;
             }
-
         },
         initialDateParsing() {
            for (let i = 0; i < this.contacts.length; i++) {
@@ -247,7 +246,7 @@ createApp ({
                    date[0] = month[0];
                    date[1] = month[1];
                    date = date.join("");
-                   date = this.parseDate(new Date(date),this.dateOptions);
+                   date = this.dateParsing(new Date(date),this.dateOptions);
                    this.contacts[i].messages[j].date = date;
                }
            }
