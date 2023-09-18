@@ -177,7 +177,7 @@ createApp ({
         }
     },
     mounted() {
-        this.dateFormat('full');
+        this.dateFormat('hour-minute');
         this.initialDateParsing();
         this.contactsCopy();
     },
@@ -214,6 +214,10 @@ createApp ({
             });
             this.newMessage = '';
             this.newMessageDate = null;
+        },
+        deleteMessage(i){
+            this.contacts[this.chatToShow].messages.splice(i,1);
+            console.log(this.contacts[this.chatToShow].messages);
         },
         dateParsing(date,options) {
             date = date.toLocaleTimeString('it-IT', options);
