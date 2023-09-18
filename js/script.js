@@ -177,7 +177,7 @@ createApp ({
         }
     },
     mounted() {
-        this.dateFormat('hour-minute');
+        this.dateFormat('full');
         this.initialDateParsing();
         this.contactsCopy();
     },
