@@ -195,24 +195,22 @@ createApp ({
                 this.chatToShow = i;
             }
         },
-        sendOrReceiveMessage(type) {
-            if (this.newMessage != '') {
-                this.pushMessage(type);
-                const timeout = setTimeout(this.sendOrReceiveMessage, 5000);
-                console.log(this.newMessage)
-                console.log(timeout)
-            } else {
+        sendOrReceiveMessage(sendMessage) {
+            console.log(sendMessage)
+            if (sendMessage && this.newMessage != '') {
+                this.pushMessage('sent');
+                setTimeout(this.sendOrReceiveMessage, 5000);
+            } else if(!sendMessage) {
                 this.newMessage = 'Ok';
                 this.pushMessage('received');
-                console.log(this.newMessage)
             }
         },
-        pushMessage(type) {
+        pushMessage(messageType) {
             this.newMessageDate = this.dateParsing(new Date(),this.dateOptions);
             this.contacts[this.chatToShow].messages.push({
                 date: this.newMessageDate,
                 message: this.newMessage,
-                status: type
+                status: messageType
             });
             this.newMessage = '';
             this.newMessageDate = null;
@@ -221,8 +219,8 @@ createApp ({
             date = date.toLocaleTimeString('it-IT', options);
             return date;
         },
-        dateFormat(type) {
-            switch (type) {
+        dateFormat(formatType) {
+            switch (formatType) {
                 case 'full':
                     this.dateOptions = {
                         year: 'numeric',
@@ -273,10 +271,3 @@ createApp ({
         }
     }
 }).mount('#app');
-
-/*
-BUG
-- se applico il filtro con una chat aperta c'è un errore (RISOLTO)
-- function sendOrReceiveMessage: se scrivo un messaggio senza premere 'invio' prima che parta la timeout function, questo viene stampato su sfondo trasparente
-
-*/
