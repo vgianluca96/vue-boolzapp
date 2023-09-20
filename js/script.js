@@ -196,7 +196,6 @@ createApp ({
             }
         },
         sendOrReceiveMessage(sendMessage) {
-            console.log(sendMessage)
             if (sendMessage && this.newMessage != '') {
                 this.pushMessage('sent');
                 setTimeout(this.sendOrReceiveMessage, 5000);
@@ -217,7 +216,6 @@ createApp ({
         },
         deleteMessage(i){
             this.contacts[this.chatToShow].messages.splice(i,1);
-            console.log(this.contacts[this.chatToShow].messages);
         },
         dateParsing(date,options) {
             date = date.toLocaleTimeString('it-IT', options);
